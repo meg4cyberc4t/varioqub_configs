@@ -23,18 +23,25 @@ jobs:
   checkout:
     name: "Checkout"
     runs-on: ubuntu-latest
-    container:
-      image: flutter:stable
     defaults:
       run:
         working-directory: ./
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
+      - uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.9'
+          channel: 'stable'
+          cache: true
+          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
+          cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+          architecture: x64
       - name: 🚂 Get latest code
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
-
       - name: 🚃 Cache pub modules
         uses: actions/cache@v2
         env:
