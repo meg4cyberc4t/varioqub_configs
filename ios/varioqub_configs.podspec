@@ -5,13 +5,15 @@
 Pod::Spec.new do |s|
   s.name             = 'varioqub_configs'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin project.'
+  s.summary          = 'Flutter plugin providing work with remote configs,experiments and A/B testing via Varioqub.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+  Flutter plugin providing work with remote configs,
+  experiments and A/B testing via Varioqub.
+  Read the README for full details.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Igor Molchanov' => 'meg4cyberc4t@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
