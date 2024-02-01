@@ -1,5 +1,5 @@
 name: varioqub_configs
-description: " Flutter plugin providing work with remote configs, experiments and A/B testing via Varioqub"
+description: "Flutter plugin providing work with remote configs, experiments and A/B testing via Varioqub"
 version: 0.0.1
 
 environment:
