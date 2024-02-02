@@ -1,4 +1,4 @@
-import 'package:varioqub_configs/src/build/build_settings_codec.dart';
+import 'package:varioqub_configs/src/build_settings/build_settings_codec.dart';
 import 'package:varioqub_configs/src/messages.g.dart';
 import 'package:varioqub_configs/varioqub_configs.dart';
 
