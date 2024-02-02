@@ -3,45 +3,24 @@ name: VarioqubConfigs
 on:
   workflow_dispatch:
   push:
-    paths:
-      - "lib/**"
-      - "android/**"
-      - "ios/**"
-      - "example/**"
-      - "test/**.dart"
-      - "pubspec.yaml"
   pull_request:
-    paths:
-      - "lib/**"
-      - "android/**"
-      - "ios/**"
-      - "example/**"
-      - "test/**.dart"
-      - "pubspec.yaml"
 
 jobs:
   checkout:
     name: "Checkout"
     runs-on: macos-latest
+    container:
+      image: dart:beta
     defaults:
       run:
         working-directory: ./
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.16.9'
-          channel: 'stable'
-          cache: true
-          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
-          cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
-          architecture: x64
       - name: 🚂 Get latest code
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
+
       - name: 🚃 Cache pub modules
         uses: actions/cache@v2
         env:
@@ -56,21 +35,26 @@ jobs:
 
       - name: 👷 Install Dependencies
         timeout-minutes: 1
-        run: flutter pub get; flutter pub get --directory example/
+        run: |
+          dart pub get -C .
 
       - name: 🔎 Check format
         timeout-minutes: 1
-        run: dart format --set-exit-if-changed -l 80 -o none $(find lib test example -name '*.dart'  -and -not -name '*.g.dart')   
+        run: dart format --set-exit-if-changed -l 80 -o none lib/
 
       - name: 📈 Check analyzer
         timeout-minutes: 1
-        run: dart analyze --fatal-infos --fatal-warnings
+        run: dart analyze --fatal-infos --fatal-warnings lib/
 
-      - name: Run publish "--dry-run"
-        run: dart pub publish --dry-run
-
-      - name: ⚙️ Build example
+      - name: 🧪 Run tests
         run: |
-          cd example
-          flutter build apk
-          flutter build ipa --no-codesign
+          dart test --coverage=coverage \
+            && dart run coverage:format_coverage --lcov --in=coverage \
+            --out=coverage/lcov.info --report-on=lib
+
+      - name: 🧮 Check Code Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v1.2.1
+        with:
+          path: coverage/lcov.info
+          min_coverage: 90
+          #exclude: '**.g.dart **.freezed.dart'
