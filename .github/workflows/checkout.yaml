@@ -56,11 +56,11 @@ jobs:
 
       - name: 👷 Install Dependencies
         timeout-minutes: 1
-        run: flutter pub get
+        run: flutter pub get; flutter pub get --directory example/
 
       - name: 🔎 Check format
         timeout-minutes: 1
-        run: dart format --set-exit-if-changed -l 80 -o none $(find lib test -name '*.dart'  -and -not -name '*.g.dart')   
+        run: dart format --set-exit-if-changed -l 80 -o none $(find lib test example -name '*.dart'  -and -not -name '*.g.dart')   
 
       - name: 📈 Check analyzer
         timeout-minutes: 1
