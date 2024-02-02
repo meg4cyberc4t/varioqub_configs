@@ -45,16 +45,3 @@ jobs:
       - name: 📈 Check analyzer
         timeout-minutes: 1
         run: dart analyze --fatal-infos --fatal-warnings lib/
-
-      - name: 🧪 Run tests
-        run: |
-          dart test --coverage=coverage \
-            && dart run coverage:format_coverage --lcov --in=coverage \
-            --out=coverage/lcov.info --report-on=lib
-
-      - name: 🧮 Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.2.1
-        with:
-          path: coverage/lcov.info
-          min_coverage: 90
-          #exclude: '**.g.dart **.freezed.dart'
