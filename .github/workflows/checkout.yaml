@@ -10,7 +10,7 @@ jobs:
     name: "Checkout"
     runs-on: ubuntu-latest
     container:
-      image: dart:beta
+      image: plugfox/flutter:stable
     defaults:
       run:
         working-directory: ./
@@ -36,7 +36,7 @@ jobs:
       - name: 👷 Install Dependencies
         timeout-minutes: 1
         run: |
-          dart pub get -C .
+          flutter pub get -C .
 
       - name: 🔎 Check format
         timeout-minutes: 1
