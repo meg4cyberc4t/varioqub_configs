@@ -8,7 +8,7 @@ on:
 jobs:
   checkout:
     name: "Checkout"
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     container:
       image: dart:beta
     defaults:
