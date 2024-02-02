@@ -22,7 +22,7 @@ on:
 jobs:
   checkout:
     name: "Checkout"
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     defaults:
       run:
         working-directory: ./
