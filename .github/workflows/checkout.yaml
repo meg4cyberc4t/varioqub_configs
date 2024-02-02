@@ -56,8 +56,7 @@ jobs:
 
       - name: 👷 Install Dependencies
         timeout-minutes: 1
-        run: |
-          flutter pub get -C .
+        run: flutter pub get
 
       - name: 🔎 Check format
         timeout-minutes: 1
