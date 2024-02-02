@@ -64,7 +64,10 @@ jobs:
 
       - name: 📈 Check analyzer
         timeout-minutes: 1
-        run: dart analyze --fatal-infos --fatal-warnings lib/
+        run: dart analyze --fatal-infos --fatal-warnings
+
+      - name: Run publish "--dry-run"
+        run: dart pub publish --dry-run
 
       - name: ⚙️ Build example
         run: |
