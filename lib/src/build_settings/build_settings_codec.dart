@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:varioqub_configs/src/messages.g.dart';
 import 'package:varioqub_configs/varioqub_configs.dart';
 
-/// {@nodoc}
+/// @nodoc
 const buildSettingsCodec = _BuildSettingsCodec();
 
 class _BuildSettingsCodec extends Codec<BuildSettings, PigeonBuildSettings> {
