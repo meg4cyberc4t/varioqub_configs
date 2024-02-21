@@ -1,6 +1,12 @@
+## 0.6.0
+
+Pigeon have been updated to version ^17.0.0.
+Kotlin and swift packages have been updated to version 0.6.0.
+Updated docs.
+
 ## 0.0.3
 
-Changing dependencies in .podspec for ios projects, the library is now static 
+Changing dependencies in .podspec for ios projects, the library is now static
 
 ## 0.0.2
 
