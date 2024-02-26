@@ -5,9 +5,9 @@ PODS:
   - Varioqub/Core (0.6.0):
     - Varioqub/VQSwiftProtobuf
   - Varioqub/VQSwiftProtobuf (0.6.0)
-  - varioqub_configs (0.0.3):
+  - varioqub_configs (0.6.1):
     - Flutter
-    - Varioqub (~> 0.5)
+    - Varioqub (~> 0.6)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   Varioqub: 58ac5ff3e51a46aca97c3a9c9f3b5cc9d5bf949e
-  varioqub_configs: 34e6019b7d580234c3ad8aa03ceff225ba266848
+  varioqub_configs: 3bc95e7b23152922bf18d365c009bff6cff00c7b
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 

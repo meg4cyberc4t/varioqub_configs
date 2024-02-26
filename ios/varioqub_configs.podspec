@@ -4,20 +4,20 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'varioqub_configs'
-  s.version          = '0.6.0'
+  s.version          = '0.6.1'
   s.summary          = 'Flutter plugin providing work with remote configs,experiments and A/B testing via Varioqub.'
   s.description      = <<-DESC
   Flutter plugin providing work with remote configs,
   experiments and A/B testing via Varioqub.
   Read the README for full details.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/meg4cyberc4t/varioqub_configs'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Igor Molchanov' => 'meg4cyberc4t@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'Varioqub', '~> 0.5'
+  s.dependency 'Varioqub', '~> 0.6'
   s.platform = :ios, '11.0'
   s.static_framework = true
 
