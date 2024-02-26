@@ -10,17 +10,14 @@ import Varioqub
 
 
 public class VarioqubIdHandler: NSObject, VarioqubIdProvider {
-    var deviceId: String = "000"
-    var userId: String = "000"
+    public var deviceId: String = "000"
+    public var userId: String = "000"
     
     public func fetchIdentifiers(completion: @escaping Completion) {
         completion(Result.success(VarioqubIdentifiers(deviceId: deviceId, userId: userId)))
     }
     
     public var varioqubName: String = "VarioqubIdHandler"
-    
-   
-    
 }
 
 public class VarioqubConfigsPlugin: NSObject, FlutterPlugin, VarioqubSender {
