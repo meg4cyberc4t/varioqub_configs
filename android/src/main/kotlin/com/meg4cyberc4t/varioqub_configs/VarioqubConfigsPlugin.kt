@@ -1,7 +1,5 @@
 package com.meg4cyberc4t.varioqub_configs
 
-import PigeonBuildSettings
-import VarioqubSender
 import android.content.Context
 import android.util.Log
 import com.yandex.varioqub.config.FetchError
@@ -21,6 +19,7 @@ class VarioqubConfigsPlugin : FlutterPlugin, VarioqubSender {
 
     private lateinit var api: VarioqubApi
     private lateinit var context: Context
+    private val adapter: VarioqubAdapter = VarioqubAdapter()
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         try {
@@ -28,7 +27,7 @@ class VarioqubConfigsPlugin : FlutterPlugin, VarioqubSender {
             context = flutterPluginBinding.applicationContext
             api = Varioqub.getInstance()
         } catch (error: Throwable) {
-            Log.e(TAG, "Failed to initialize TickerPlugin")
+            Log.e(TAG, "Failed to initialize VarioqubConfigsPlugin")
         }
     }
 
@@ -52,9 +51,23 @@ class VarioqubConfigsPlugin : FlutterPlugin, VarioqubSender {
         }
         api.init(
             settingsBuilder.build(),
-            VarioqubAdapter(),
+            adapter,
             context,
         );
+    }
+
+    override fun updateDeviceId(value: String) {
+        adapter.deviceId = value;
+    }
+
+    override fun getDeviceId(): String {
+      return adapter.deviceId;
+    }
+    override fun updateUserId(value: String) {
+        adapter.userId = value;
+    }
+    override fun getUserId(): String {
+       return adapter.userId;
     }
 
     override fun fetchConfig(callback: (Result<Unit>) -> Unit) {
