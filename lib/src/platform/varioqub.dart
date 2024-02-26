@@ -29,12 +29,20 @@ abstract interface class VarioqubConfigs {
   /// To do this, specify it in the appropriate field in A/B experiments.
   Future<String> getId();
 
+  /// Getting the DeviceID from the metric.
+  /// It is used for analysis and experiments.
   Future<String> getDeviceId();
 
+  /// Updating the DeviceID in metrics.
+  /// It is used for analysis and experiments.
   Future<void> updateDeviceId(final String value);
 
+  /// Getting the UserID from the metric.
+  /// It is used for analysis and experiments.
   Future<String> getUserId();
 
+  /// Updating the UserID in metrics.
+  /// It is used for analysis and experiments.
   Future<void> updateUserId(final String value);
 
   /// Adding default values

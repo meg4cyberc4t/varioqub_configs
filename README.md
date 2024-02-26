@@ -32,10 +32,6 @@ await configs.getString(
 
 [Official docs from Yandex](https://yandex.ru/support2/varioqub-app/ru/)
 
-# Limitations
-
-At the moment, the library is used exclusively for obtaining and working with configs and experiments. Analytics elements are not used for fetch!
-
 # Changelog
 
 [Refer to the Changelog to get all release notes.](https://github.com/meg4cyberc4t/varioqub_configs/blob/main/CHANGELOG.md)
