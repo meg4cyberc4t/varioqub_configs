@@ -11,7 +11,10 @@ import 'package:pigeon/pigeon.dart';
     dartOptions: DartOptions(),
     kotlinOut:
         'android/src/main/kotlin/com/meg4cyberc4t/varioqub_configs/Messages.g.kt',
-    kotlinOptions: KotlinOptions(),
+    kotlinOptions: KotlinOptions(
+      errorClassName: 'FlutterError',
+      package: 'com.meg4cyberc4t.varioqub_configs',
+    ),
     swiftOut: 'ios/Classes/Messages.g.swift',
     swiftOptions: SwiftOptions(),
     copyrightHeader: 'pigeons/copyright.txt',
@@ -51,6 +54,12 @@ final class PigeonBuildSettings {
 @HostApi()
 abstract class VarioqubSender {
   void build(final PigeonBuildSettings settings);
+
+  String getDeviceId();
+  void updateDeviceId(final String value);
+
+  String getUserId();
+  void updateUserId(final String value);
 
   @async
   void fetchConfig();

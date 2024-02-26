@@ -6,14 +6,17 @@ import com.yandex.varioqub.analyticadapter.VarioqubConfigAdapter
 class VarioqubAdapter : VarioqubConfigAdapter {
     override val adapterName: String = "VarioqubAdapter"
 
+    var deviceId: String = "000"
+    var userId: String = "000"
+
     override fun reportConfigChanged(configData: com.yandex.varioqub.analyticadapter.data.ConfigData) {}
 
     override fun requestDeviceId(callback: AdapterIdentifiersCallback) {
-        callback.onSuccess("000")
+        callback.onSuccess(deviceId)
     }
 
     override fun requestUserId(callback: AdapterIdentifiersCallback) {
-        callback.onSuccess("000")
+        callback.onSuccess(userId)
     }
 
     override fun setExperiments(experiments: String) {}
