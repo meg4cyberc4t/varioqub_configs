@@ -8,7 +8,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final varioqub = VarioqubConfigs();
   await varioqub.build(
-    const BuildSettings(
+    BuildSettings(
       client: VarioqubClient.appmetrica(
         'XXXXXXX',
       ),
