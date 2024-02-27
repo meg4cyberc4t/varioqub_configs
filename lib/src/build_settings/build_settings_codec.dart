@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:varioqub_configs/src/build_settings/adapter_mode.dart';
 import 'package:varioqub_configs/src/messages.g.dart';
 import 'package:varioqub_configs/varioqub_configs.dart';
 
@@ -24,6 +25,10 @@ final class _BuildSettingsEncoderConverter
 
   @override
   PigeonBuildSettings convert(final BuildSettings input) => PigeonBuildSettings(
+        adapterMode: switch (input.client.adapterMode) {
+          VarioqubAdapterMode.appmetrica => PigeonAdapterMode.appmetrica,
+          VarioqubAdapterMode.none => PigeonAdapterMode.none,
+        },
         activateEvent: input.activateEvent,
         clientFeatures: input.clientFeatures,
         clientId: input.client.id,

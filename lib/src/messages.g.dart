@@ -18,15 +18,23 @@ PlatformException _createConnectionError(String channelName) {
   );
 }
 
+enum PigeonAdapterMode {
+  appmetrica,
+  none,
+}
+
 class PigeonBuildSettings {
   PigeonBuildSettings({
     required this.clientId,
+    required this.adapterMode,
     required this.clientFeatures,
     this.logs,
     required this.activateEvent,
   });
 
   String clientId;
+
+  PigeonAdapterMode adapterMode;
 
   Map<String?, String?> clientFeatures;
 
@@ -37,6 +45,7 @@ class PigeonBuildSettings {
   Object encode() {
     return <Object?>[
       clientId,
+      adapterMode.index,
       clientFeatures,
       logs,
       activateEvent,
@@ -47,10 +56,10 @@ class PigeonBuildSettings {
     result as List<Object?>;
     return PigeonBuildSettings(
       clientId: result[0]! as String,
-      clientFeatures:
-          (result[1] as Map<Object?, Object?>?)!.cast<String?, String?>(),
-      logs: result[2] as bool?,
-      activateEvent: result[3]! as bool,
+      adapterMode: PigeonAdapterMode.values[result[1]! as int],
+      clientFeatures: (result[2] as Map<Object?, Object?>?)!.cast<String?, String?>(),
+      logs: result[3] as bool?,
+      activateEvent: result[4]! as bool,
     );
   }
 }
@@ -70,7 +79,7 @@ class _VarioqubSenderCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 128:
+      case 128: 
         return PigeonBuildSettings.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -86,14 +95,11 @@ class VarioqubSender {
       : __pigeon_binaryMessenger = binaryMessenger;
   final BinaryMessenger? __pigeon_binaryMessenger;
 
-  static const MessageCodec<Object?> pigeonChannelCodec =
-      _VarioqubSenderCodec();
+  static const MessageCodec<Object?> pigeonChannelCodec = _VarioqubSenderCodec();
 
   Future<void> build(PigeonBuildSettings settings) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.build';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.build';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
@@ -113,117 +119,9 @@ class VarioqubSender {
     }
   }
 
-  Future<String> getDeviceId() async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getDeviceId';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
-      __pigeon_channelName,
-      pigeonChannelCodec,
-      binaryMessenger: __pigeon_binaryMessenger,
-    );
-    final List<Object?>? __pigeon_replyList =
-        await __pigeon_channel.send(null) as List<Object?>?;
-    if (__pigeon_replyList == null) {
-      throw _createConnectionError(__pigeon_channelName);
-    } else if (__pigeon_replyList.length > 1) {
-      throw PlatformException(
-        code: __pigeon_replyList[0]! as String,
-        message: __pigeon_replyList[1] as String?,
-        details: __pigeon_replyList[2],
-      );
-    } else if (__pigeon_replyList[0] == null) {
-      throw PlatformException(
-        code: 'null-error',
-        message: 'Host platform returned null value for non-null return value.',
-      );
-    } else {
-      return (__pigeon_replyList[0] as String?)!;
-    }
-  }
-
-  Future<void> updateDeviceId(String value) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.updateDeviceId';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
-      __pigeon_channelName,
-      pigeonChannelCodec,
-      binaryMessenger: __pigeon_binaryMessenger,
-    );
-    final List<Object?>? __pigeon_replyList =
-        await __pigeon_channel.send(<Object?>[value]) as List<Object?>?;
-    if (__pigeon_replyList == null) {
-      throw _createConnectionError(__pigeon_channelName);
-    } else if (__pigeon_replyList.length > 1) {
-      throw PlatformException(
-        code: __pigeon_replyList[0]! as String,
-        message: __pigeon_replyList[1] as String?,
-        details: __pigeon_replyList[2],
-      );
-    } else {
-      return;
-    }
-  }
-
-  Future<String> getUserId() async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getUserId';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
-      __pigeon_channelName,
-      pigeonChannelCodec,
-      binaryMessenger: __pigeon_binaryMessenger,
-    );
-    final List<Object?>? __pigeon_replyList =
-        await __pigeon_channel.send(null) as List<Object?>?;
-    if (__pigeon_replyList == null) {
-      throw _createConnectionError(__pigeon_channelName);
-    } else if (__pigeon_replyList.length > 1) {
-      throw PlatformException(
-        code: __pigeon_replyList[0]! as String,
-        message: __pigeon_replyList[1] as String?,
-        details: __pigeon_replyList[2],
-      );
-    } else if (__pigeon_replyList[0] == null) {
-      throw PlatformException(
-        code: 'null-error',
-        message: 'Host platform returned null value for non-null return value.',
-      );
-    } else {
-      return (__pigeon_replyList[0] as String?)!;
-    }
-  }
-
-  Future<void> updateUserId(String value) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.updateUserId';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
-      __pigeon_channelName,
-      pigeonChannelCodec,
-      binaryMessenger: __pigeon_binaryMessenger,
-    );
-    final List<Object?>? __pigeon_replyList =
-        await __pigeon_channel.send(<Object?>[value]) as List<Object?>?;
-    if (__pigeon_replyList == null) {
-      throw _createConnectionError(__pigeon_channelName);
-    } else if (__pigeon_replyList.length > 1) {
-      throw PlatformException(
-        code: __pigeon_replyList[0]! as String,
-        message: __pigeon_replyList[1] as String?,
-        details: __pigeon_replyList[2],
-      );
-    } else {
-      return;
-    }
-  }
-
   Future<void> fetchConfig() async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.fetchConfig';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.fetchConfig';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
@@ -244,10 +142,8 @@ class VarioqubSender {
   }
 
   Future<void> activateConfig() async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.activateConfig';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.activateConfig';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
@@ -268,10 +164,8 @@ class VarioqubSender {
   }
 
   Future<void> setDefaults(Map<String?, Object?> values) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.setDefaults';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.setDefaults';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
@@ -291,18 +185,15 @@ class VarioqubSender {
     }
   }
 
-  Future<String> getString(
-      {required String key, required String defaultValue}) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getString';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+  Future<String> getString({required String key, required String defaultValue}) async {
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getString';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
     );
-    final List<Object?>? __pigeon_replyList = await __pigeon_channel
-        .send(<Object?>[key, defaultValue]) as List<Object?>?;
+    final List<Object?>? __pigeon_replyList =
+        await __pigeon_channel.send(<Object?>[key, defaultValue]) as List<Object?>?;
     if (__pigeon_replyList == null) {
       throw _createConnectionError(__pigeon_channelName);
     } else if (__pigeon_replyList.length > 1) {
@@ -321,18 +212,15 @@ class VarioqubSender {
     }
   }
 
-  Future<bool> getBool(
-      {required String key, required bool defaultValue}) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getBool';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+  Future<bool> getBool({required String key, required bool defaultValue}) async {
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getBool';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
     );
-    final List<Object?>? __pigeon_replyList = await __pigeon_channel
-        .send(<Object?>[key, defaultValue]) as List<Object?>?;
+    final List<Object?>? __pigeon_replyList =
+        await __pigeon_channel.send(<Object?>[key, defaultValue]) as List<Object?>?;
     if (__pigeon_replyList == null) {
       throw _createConnectionError(__pigeon_channelName);
     } else if (__pigeon_replyList.length > 1) {
@@ -352,16 +240,14 @@ class VarioqubSender {
   }
 
   Future<int> getInt({required String key, required int defaultValue}) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getInt';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getInt';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
     );
-    final List<Object?>? __pigeon_replyList = await __pigeon_channel
-        .send(<Object?>[key, defaultValue]) as List<Object?>?;
+    final List<Object?>? __pigeon_replyList =
+        await __pigeon_channel.send(<Object?>[key, defaultValue]) as List<Object?>?;
     if (__pigeon_replyList == null) {
       throw _createConnectionError(__pigeon_channelName);
     } else if (__pigeon_replyList.length > 1) {
@@ -380,18 +266,15 @@ class VarioqubSender {
     }
   }
 
-  Future<double> getDouble(
-      {required String key, required double defaultValue}) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getDouble';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+  Future<double> getDouble({required String key, required double defaultValue}) async {
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getDouble';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
     );
-    final List<Object?>? __pigeon_replyList = await __pigeon_channel
-        .send(<Object?>[key, defaultValue]) as List<Object?>?;
+    final List<Object?>? __pigeon_replyList =
+        await __pigeon_channel.send(<Object?>[key, defaultValue]) as List<Object?>?;
     if (__pigeon_replyList == null) {
       throw _createConnectionError(__pigeon_channelName);
     } else if (__pigeon_replyList.length > 1) {
@@ -411,10 +294,8 @@ class VarioqubSender {
   }
 
   Future<String> getId() async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getId';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getId';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
@@ -439,12 +320,9 @@ class VarioqubSender {
     }
   }
 
-  Future<void> putClientFeature(
-      {required String key, required String value}) async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.putClientFeature';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+  Future<void> putClientFeature({required String key, required String value}) async {
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.putClientFeature';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
@@ -465,10 +343,8 @@ class VarioqubSender {
   }
 
   Future<void> clearClientFeatures() async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.clearClientFeatures';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.clearClientFeatures';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
@@ -489,10 +365,8 @@ class VarioqubSender {
   }
 
   Future<List<String?>> getAllKeys() async {
-    const String __pigeon_channelName =
-        'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getAllKeys';
-    final BasicMessageChannel<Object?> __pigeon_channel =
-        BasicMessageChannel<Object?>(
+    const String __pigeon_channelName = 'dev.flutter.pigeon.varioqub_configs.VarioqubSender.getAllKeys';
+    final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<Object?>(
       __pigeon_channelName,
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,

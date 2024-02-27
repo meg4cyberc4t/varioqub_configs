@@ -29,22 +29,6 @@ abstract interface class VarioqubConfigs {
   /// To do this, specify it in the appropriate field in A/B experiments.
   Future<String> getId();
 
-  /// Getting the DeviceID from the metric.
-  /// It is used for analysis and experiments.
-  Future<String> getDeviceId();
-
-  /// Updating the DeviceID in metrics.
-  /// It is used for analysis and experiments.
-  Future<void> updateDeviceId(final String value);
-
-  /// Getting the UserID from the metric.
-  /// It is used for analysis and experiments.
-  Future<String> getUserId();
-
-  /// Updating the UserID in metrics.
-  /// It is used for analysis and experiments.
-  Future<void> updateUserId(final String value);
-
   /// Adding default values
   Future<void> setDefaults(final Map<String, Object> values);
 
@@ -106,19 +90,6 @@ final class _VarioqubPlatform implements VarioqubConfigs {
 
   @override
   Future<String> getId() async => _sender.getId();
-
-  @override
-  Future<String> getDeviceId() async => _sender.getDeviceId();
-
-  @override
-  Future<void> updateDeviceId(final String value) =>
-      _sender.updateDeviceId(value);
-
-  @override
-  Future<String> getUserId() async => _sender.getUserId();
-
-  @override
-  Future<void> updateUserId(final String value) => _sender.updateUserId(value);
 
   @override
   Future<String> getString({

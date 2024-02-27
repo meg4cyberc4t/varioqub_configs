@@ -2,6 +2,7 @@ package com.meg4cyberc4t.varioqub_configs
 
 import android.content.Context
 import android.util.Log
+import com.yandex.varioqub.appmetricaadapter.AppMetricaAdapter
 import com.yandex.varioqub.config.FetchError
 import com.yandex.varioqub.config.OnFetchCompleteListener
 import com.yandex.varioqub.config.Varioqub
@@ -19,7 +20,6 @@ class VarioqubConfigsPlugin : FlutterPlugin, VarioqubSender {
 
     private lateinit var api: VarioqubApi
     private lateinit var context: Context
-    private val adapter: VarioqubAdapter = VarioqubAdapter()
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         try {
@@ -51,23 +51,12 @@ class VarioqubConfigsPlugin : FlutterPlugin, VarioqubSender {
         }
         api.init(
             settingsBuilder.build(),
-            adapter,
+            when (settings.adapterMode) {
+                PigeonAdapterMode.APPMETRICA -> AppMetricaAdapter(context)
+                PigeonAdapterMode.NONE -> VarioqubNullAdapter()
+            },
             context,
         );
-    }
-
-    override fun updateDeviceId(value: String) {
-        adapter.deviceId = value;
-    }
-
-    override fun getDeviceId(): String {
-      return adapter.deviceId;
-    }
-    override fun updateUserId(value: String) {
-        adapter.userId = value;
-    }
-    override fun getUserId(): String {
-       return adapter.userId;
     }
 
     override fun fetchConfig(callback: (Result<Unit>) -> Unit) {

@@ -3,8 +3,8 @@ package com.meg4cyberc4t.varioqub_configs
 import com.yandex.varioqub.analyticadapter.AdapterIdentifiersCallback
 import com.yandex.varioqub.analyticadapter.VarioqubConfigAdapter
 
-class VarioqubAdapter : VarioqubConfigAdapter {
-    override val adapterName: String = "VarioqubAdapter"
+class VarioqubNullAdapter : VarioqubConfigAdapter {
+    override val adapterName: String = "VarioqubNullAdapter"
 
     var deviceId: String = "000"
     var userId: String = "000"

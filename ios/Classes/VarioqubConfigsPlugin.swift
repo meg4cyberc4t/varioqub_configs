@@ -1,4 +1,6 @@
 import Varioqub
+import YandexMobileMetrica
+import MetricaAdapter
 
 #if os(iOS)
   import Flutter
@@ -9,19 +11,10 @@ import Varioqub
 #endif
 
 
-public class VarioqubIdHandler: NSObject, VarioqubIdProvider {
-    public var deviceId: String = "000"
-    public var userId: String = "000"
-    
-    public func fetchIdentifiers(completion: @escaping Completion) {
-        completion(Result.success(VarioqubIdentifiers(deviceId: deviceId, userId: userId)))
-    }
-    
-    public var varioqubName: String = "VarioqubIdHandler"
-}
 
 public class VarioqubConfigsPlugin: NSObject, FlutterPlugin, VarioqubSender {
-    let idHandler: VarioqubIdHandler = VarioqubIdHandler();
+    var idProvider: VarioqubIdProvider? = nil;
+    var reporter: VarioqubReporter? = nil;
     
     init(binaryMessenger: FlutterBinaryMessenger) {
             super.init()
@@ -45,11 +38,23 @@ public class VarioqubConfigsPlugin: NSObject, FlutterPlugin, VarioqubSender {
         }
         config.initialClientFeatures = ClientFeatures(dictionary: clientFeatures)
         
+      
+        switch (settings.adapterMode) {
+           case .appmetrica:
+            let adapter = AppmetricaAdapter();
+            reporter = adapter;
+            idProvider = adapter;
+           case .none:
+            let adapter = VarioqubNullHandler();
+            reporter = adapter;
+            idProvider = adapter;
+        }
+        
         VarioqubFacade.shared.initialize(
             clientId: settings.clientId,
             config: config,
-            idProvider: idHandler,
-            reporter: nil
+            idProvider: idProvider,
+            reporter: reporter
         )
     }
     
@@ -75,22 +80,6 @@ public class VarioqubConfigsPlugin: NSObject, FlutterPlugin, VarioqubSender {
             defaults[VarioqubFlag(rawValue: key)] = String(describing: value)
         }
         return VarioqubFacade.shared.setDefaultsAndWait(defaults)
-    }
-    
-    func getDeviceId() throws -> String {
-        return idHandler.deviceId
-    }
-    
-    func updateDeviceId(value: String) throws {
-        return idHandler.deviceId = value
-    }
-    
-    func getUserId() throws -> String {
-        return idHandler.userId
-    }
-    
-    func updateUserId(value: String) throws {
-        return idHandler.userId = value
     }
     
     func getString(key: String, defaultValue: String) throws -> String {
