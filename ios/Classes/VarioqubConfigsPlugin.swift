@@ -1,5 +1,4 @@
 import Varioqub
-import YandexMobileMetrica
 import MetricaAdapter
 
 #if os(iOS)
