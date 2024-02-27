@@ -1,5 +1,7 @@
 # Varioqub Configs
 
+<img src=".github/images/vq_background.jpg" />
+
 ### Flutter plugin providing work with remote configs, experiments and A/B testing via <a href="https://varioqub.ru/">Varioqub</a>.
 
 # Example of using
