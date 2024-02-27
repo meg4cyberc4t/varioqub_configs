@@ -1,3 +1,10 @@
+//
+//  VarioqubNullAdapter.swift
+//  varioqub_configs
+//
+//  Created by Igor Molchanov on 27.02.2024.
+//
+
 import Varioqub
 import MetricaAdapter
 

@@ -18,10 +18,10 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'Varioqub', '~> 0.6'
-  s.dependency 'Varioqub/MetricaAdapterReflection', '~> 0.6'
+  s.dependency 'Varioqub/MetricaAdapter', '~> 0.6'
 
   s.platform = :ios, '11.0'
-  s.static_framework = true
+  s.static_framework = false
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
