@@ -1,3 +1,8 @@
+## 0.6.2
+
+- Downgrade of a minimum Dart version to 3.0.0.
+- Updated docs.
+
 ## 0.6.1
 
 - Added methods getUserId, updateUserId, getDeviceId, updateDeviceId for user analytics.
