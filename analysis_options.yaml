@@ -220,7 +220,6 @@ linter:
     literal_only_boolean_expressions: true
     matching_super_parameters: true
     no_literal_bool_comparisons: true
-    no_self_assignments: true
     prefer_final_parameters: true
     prefer_int_literals: true
     prefer_spread_collections: true
