@@ -20,7 +20,8 @@ Pod::Spec.new do |s|
   s.dependency 'Varioqub', '~> 0.6'
   s.dependency 'Varioqub/MetricaAdapter', '~> 0.6'
 
-  s.platform = :ios, '11.0'
+
+  s.platform = :ios, '12.0'
   s.static_framework = true
 
   # Flutter.framework does not contain a i386 slice.

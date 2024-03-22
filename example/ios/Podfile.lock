@@ -1,4 +1,7 @@
 PODS:
+  - appmetrica_plugin (1.4.0):
+    - Flutter
+    - YandexMobileMetrica/Dynamic (~> 4.4)
   - Flutter (1.0.0)
   - Varioqub (0.6.0):
     - Varioqub/Core (= 0.6.0)
@@ -13,9 +16,15 @@ PODS:
     - Flutter
     - Varioqub (~> 0.6)
     - Varioqub/MetricaAdapter (~> 0.6)
+  - YandexMobileMetrica/Dynamic (4.5.2):
+    - YandexMobileMetrica/Dynamic/Core (= 4.5.2)
+    - YandexMobileMetrica/Dynamic/Crashes (= 4.5.2)
   - YandexMobileMetrica/Dynamic/Core (4.5.2)
+  - YandexMobileMetrica/Dynamic/Crashes (4.5.2):
+    - YandexMobileMetrica/Dynamic/Core
 
 DEPENDENCIES:
+  - appmetrica_plugin (from `.symlinks/plugins/appmetrica_plugin/ios`)
   - Flutter (from `Flutter`)
   - varioqub_configs (from `.symlinks/plugins/varioqub_configs/ios`)
 
@@ -25,17 +34,20 @@ SPEC REPOS:
     - YandexMobileMetrica
 
 EXTERNAL SOURCES:
+  appmetrica_plugin:
+    :path: ".symlinks/plugins/appmetrica_plugin/ios"
   Flutter:
     :path: Flutter
   varioqub_configs:
     :path: ".symlinks/plugins/varioqub_configs/ios"
 
 SPEC CHECKSUMS:
+  appmetrica_plugin: 5bebaf848b31c2310a84ca57072fed93cbe41715
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   Varioqub: 58ac5ff3e51a46aca97c3a9c9f3b5cc9d5bf949e
-  varioqub_configs: 96082bafb93ed85fa2f732599926820d009656ea
+  varioqub_configs: 0fb7f0a6801b9dc409eb0832f5887f0686951bff
   YandexMobileMetrica: f5368ee93f286c793d73b58da00929babfc897c1
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
-COCOAPODS: 1.15.0
+COCOAPODS: 1.15.2
