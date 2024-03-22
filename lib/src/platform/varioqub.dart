@@ -7,6 +7,7 @@ import 'package:varioqub_configs/varioqub_configs.dart';
 /// experiments and A/B testing via Varioqub.
 /// {@endtemplate}
 abstract interface class VarioqubConfigs {
+  /// {@macro VarioqubConfigs}
   factory VarioqubConfigs() => _VarioqubPlatform();
 
   /// Initializing settings for VarioqubConfigs

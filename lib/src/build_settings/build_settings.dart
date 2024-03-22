@@ -34,6 +34,7 @@ final class BuildSettings {
 /// Classes for authorization in Varioqub
 /// {@endtemplate}
 sealed class VarioqubClient {
+  /// {@macro VarioqubClient}
   const VarioqubClient();
 
   /// Authorization in Varioqub via AppMetrica
