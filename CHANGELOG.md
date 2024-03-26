@@ -1,3 +1,8 @@
+## 0.7.0
+
+- Adding a VarioqubAdapter from native appmetrica implementations.
+- **BREAKING CHANGES** getUserId, setUserId, getDeviceId, setDeviceId was deprecated and deleted. Use VarioqubAdapterMode adapterMode = VarioqubAdapterMode.appmetrica in VarioqubClient instead (By default when using appmetrica constructor).
+
 ## 0.6.2
 
 - Downgrade of a minimum Dart version to 3.0.0.
