@@ -1,6 +1,6 @@
 name: varioqub_configs
 description: "Flutter plugin providing work with remote configs, experiments and A/B testing via Varioqub"
-version: 0.6.2
+version: 0.7.0
 repository: https://github.com/meg4cyberc4t/varioqub_configs
 homepage: https://github.com/meg4cyberc4t/varioqub_configs
 issue_tracker: https://github.com/meg4cyberc4t/varioqub_configs/issues
