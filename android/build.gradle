@@ -51,7 +51,6 @@ android {
 
     dependencies {
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
-        testImplementation 'org.mockito:mockito-core:5.0.0'
         implementation 'com.yandex.varioqub:appmetrica-adapter:0.6.0'
         implementation 'com.yandex.varioqub:config:0.6.0'
         implementation 'com.yandex.android:mobmetricalib:5.3.0'

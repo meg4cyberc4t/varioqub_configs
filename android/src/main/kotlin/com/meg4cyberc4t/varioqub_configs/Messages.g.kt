@@ -46,9 +46,21 @@ class FlutterError (
   val details: Any? = null
 ) : Throwable()
 
+enum class PigeonAdapterMode(val raw: Int) {
+  APPMETRICA(0),
+  NONE(1);
+
+  companion object {
+    fun ofRaw(raw: Int): PigeonAdapterMode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
 /** Generated class from Pigeon that represents data sent in messages. */
 data class PigeonBuildSettings (
   val clientId: String,
+  val adapterMode: PigeonAdapterMode,
   val clientFeatures: Map<String?, String?>,
   val logs: Boolean? = null,
   val activateEvent: Boolean
@@ -58,15 +70,17 @@ data class PigeonBuildSettings (
     @Suppress("UNCHECKED_CAST")
     fun fromList(list: List<Any?>): PigeonBuildSettings {
       val clientId = list[0] as String
-      val clientFeatures = list[1] as Map<String?, String?>
-      val logs = list[2] as Boolean?
-      val activateEvent = list[3] as Boolean
-      return PigeonBuildSettings(clientId, clientFeatures, logs, activateEvent)
+      val adapterMode = PigeonAdapterMode.ofRaw(list[1] as Int)!!
+      val clientFeatures = list[2] as Map<String?, String?>
+      val logs = list[3] as Boolean?
+      val activateEvent = list[4] as Boolean
+      return PigeonBuildSettings(clientId, adapterMode, clientFeatures, logs, activateEvent)
     }
   }
   fun toList(): List<Any?> {
     return listOf<Any?>(
       clientId,
+      adapterMode.raw,
       clientFeatures,
       logs,
       activateEvent,
@@ -100,10 +114,6 @@ private object VarioqubSenderCodec : StandardMessageCodec() {
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface VarioqubSender {
   fun build(settings: PigeonBuildSettings)
-  fun getDeviceId(): String
-  fun updateDeviceId(value: String)
-  fun getUserId(): String
-  fun updateUserId(value: String)
   fun fetchConfig(callback: (Result<Unit>) -> Unit)
   fun activateConfig(callback: (Result<Unit>) -> Unit)
   fun setDefaults(values: Map<String, Any>)
@@ -133,76 +143,6 @@ interface VarioqubSender {
             var wrapped: List<Any?>
             try {
               api.build(settingsArg)
-              wrapped = listOf<Any?>(null)
-            } catch (exception: Throwable) {
-              wrapped = wrapError(exception)
-            }
-            reply.reply(wrapped)
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.varioqub_configs.VarioqubSender.getDeviceId", codec)
-        if (api != null) {
-          channel.setMessageHandler { _, reply ->
-            var wrapped: List<Any?>
-            try {
-              wrapped = listOf<Any?>(api.getDeviceId())
-            } catch (exception: Throwable) {
-              wrapped = wrapError(exception)
-            }
-            reply.reply(wrapped)
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.varioqub_configs.VarioqubSender.updateDeviceId", codec)
-        if (api != null) {
-          channel.setMessageHandler { message, reply ->
-            val args = message as List<Any?>
-            val valueArg = args[0] as String
-            var wrapped: List<Any?>
-            try {
-              api.updateDeviceId(valueArg)
-              wrapped = listOf<Any?>(null)
-            } catch (exception: Throwable) {
-              wrapped = wrapError(exception)
-            }
-            reply.reply(wrapped)
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.varioqub_configs.VarioqubSender.getUserId", codec)
-        if (api != null) {
-          channel.setMessageHandler { _, reply ->
-            var wrapped: List<Any?>
-            try {
-              wrapped = listOf<Any?>(api.getUserId())
-            } catch (exception: Throwable) {
-              wrapped = wrapError(exception)
-            }
-            reply.reply(wrapped)
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.varioqub_configs.VarioqubSender.updateUserId", codec)
-        if (api != null) {
-          channel.setMessageHandler { message, reply ->
-            val args = message as List<Any?>
-            val valueArg = args[0] as String
-            var wrapped: List<Any?>
-            try {
-              api.updateUserId(valueArg)
               wrapped = listOf<Any?>(null)
             } catch (exception: Throwable) {
               wrapped = wrapError(exception)

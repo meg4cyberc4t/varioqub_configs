@@ -1,3 +1,5 @@
+import 'package:varioqub_configs/src/build_settings/adapter_mode.dart';
+
 /// {@template BuildSettings}
 /// Initialization settings for Varioqub
 /// {@endtemplate}
@@ -39,23 +41,38 @@ sealed class VarioqubClient {
   ///
   /// [appId] - number of your application in AppMetrica.
   /// You can find it in Settings -> Application ID
-  const factory VarioqubClient.appmetrica(final String appId) =
-      _BuildSettingsClient$AppMetrica;
+  factory VarioqubClient.appmetrica(
+    final String appId, {
+    final VarioqubAdapterMode adapterMode = VarioqubAdapterMode.appmetrica,
+  }) =>
+      _BuildSettingsClient$AppMetrica(
+        appId,
+        adapterMode: adapterMode,
+      );
 
   /// Authorization by passing a direct id to Varioqub
   const factory VarioqubClient.raw(final String id) = _BuildSettingsClient$Raw;
 
   /// Key for authorization
-  String get id;
+  abstract final String id;
+
+  /// {@macro VarioqubAdapterMode}
+  abstract final VarioqubAdapterMode adapterMode;
 }
 
 final class _BuildSettingsClient$AppMetrica extends VarioqubClient {
-  const _BuildSettingsClient$AppMetrica(this.appId);
+  const _BuildSettingsClient$AppMetrica(
+    this.appId, {
+    this.adapterMode = VarioqubAdapterMode.appmetrica,
+  });
 
   final String appId;
 
   @override
   String get id => 'appmetrica.$appId';
+
+  @override
+  final VarioqubAdapterMode adapterMode;
 }
 
 final class _BuildSettingsClient$Raw extends VarioqubClient {
@@ -63,4 +80,7 @@ final class _BuildSettingsClient$Raw extends VarioqubClient {
 
   @override
   final String id;
+
+  @override
+  VarioqubAdapterMode get adapterMode => VarioqubAdapterMode.none;
 }

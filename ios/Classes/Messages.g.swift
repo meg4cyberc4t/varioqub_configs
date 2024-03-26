@@ -42,21 +42,29 @@ private func nilOrValue<T>(_ value: Any?) -> T? {
   return value as! T?
 }
 
+enum PigeonAdapterMode: Int {
+  case appmetrica = 0
+  case none = 1
+}
+
 /// Generated class from Pigeon that represents data sent in messages.
 struct PigeonBuildSettings {
   var clientId: String
+  var adapterMode: PigeonAdapterMode
   var clientFeatures: [String?: String?]
   var logs: Bool? = nil
   var activateEvent: Bool
 
   static func fromList(_ list: [Any?]) -> PigeonBuildSettings? {
     let clientId = list[0] as! String
-    let clientFeatures = list[1] as! [String?: String?]
-    let logs: Bool? = nilOrValue(list[2])
-    let activateEvent = list[3] as! Bool
+    let adapterMode = PigeonAdapterMode(rawValue: list[1] as! Int)!
+    let clientFeatures = list[2] as! [String?: String?]
+    let logs: Bool? = nilOrValue(list[3])
+    let activateEvent = list[4] as! Bool
 
     return PigeonBuildSettings(
       clientId: clientId,
+      adapterMode: adapterMode,
       clientFeatures: clientFeatures,
       logs: logs,
       activateEvent: activateEvent
@@ -65,6 +73,7 @@ struct PigeonBuildSettings {
   func toList() -> [Any?] {
     return [
       clientId,
+      adapterMode.rawValue,
       clientFeatures,
       logs,
       activateEvent,
@@ -111,10 +120,6 @@ class VarioqubSenderCodec: FlutterStandardMessageCodec {
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol VarioqubSender {
   func build(settings: PigeonBuildSettings) throws
-  func getDeviceId() throws -> String
-  func updateDeviceId(value: String) throws
-  func getUserId() throws -> String
-  func updateUserId(value: String) throws
   func fetchConfig(completion: @escaping (Result<Void, Error>) -> Void)
   func activateConfig(completion: @escaping (Result<Void, Error>) -> Void)
   func setDefaults(values: [String: Any]) throws
@@ -148,62 +153,6 @@ class VarioqubSenderSetup {
       }
     } else {
       buildChannel.setMessageHandler(nil)
-    }
-    let getDeviceIdChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.varioqub_configs.VarioqubSender.getDeviceId", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      getDeviceIdChannel.setMessageHandler { _, reply in
-        do {
-          let result = try api.getDeviceId()
-          reply(wrapResult(result))
-        } catch {
-          reply(wrapError(error))
-        }
-      }
-    } else {
-      getDeviceIdChannel.setMessageHandler(nil)
-    }
-    let updateDeviceIdChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.varioqub_configs.VarioqubSender.updateDeviceId", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      updateDeviceIdChannel.setMessageHandler { message, reply in
-        let args = message as! [Any?]
-        let valueArg = args[0] as! String
-        do {
-          try api.updateDeviceId(value: valueArg)
-          reply(wrapResult(nil))
-        } catch {
-          reply(wrapError(error))
-        }
-      }
-    } else {
-      updateDeviceIdChannel.setMessageHandler(nil)
-    }
-    let getUserIdChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.varioqub_configs.VarioqubSender.getUserId", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      getUserIdChannel.setMessageHandler { _, reply in
-        do {
-          let result = try api.getUserId()
-          reply(wrapResult(result))
-        } catch {
-          reply(wrapError(error))
-        }
-      }
-    } else {
-      getUserIdChannel.setMessageHandler(nil)
-    }
-    let updateUserIdChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.varioqub_configs.VarioqubSender.updateUserId", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      updateUserIdChannel.setMessageHandler { message, reply in
-        let args = message as! [Any?]
-        let valueArg = args[0] as! String
-        do {
-          try api.updateUserId(value: valueArg)
-          reply(wrapResult(nil))
-        } catch {
-          reply(wrapError(error))
-        }
-      }
-    } else {
-      updateUserIdChannel.setMessageHandler(nil)
     }
     let fetchConfigChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.varioqub_configs.VarioqubSender.fetchConfig", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {

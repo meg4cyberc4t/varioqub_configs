@@ -12,6 +12,8 @@ dependencies:
   varioqub_configs:
     path: ../
   cupertino_icons: ^1.0.2
+  # To test the work in conjunction with appmetrica_plugin
+  appmetrica_plugin: ^2.0.0
 
 dev_dependencies:
   flutter_test:

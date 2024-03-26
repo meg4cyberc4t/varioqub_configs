@@ -25,11 +25,8 @@ import 'package:pigeon/pigeon.dart';
 
 final class ConfigData {
   final String oldConfigVersion;
-
   final String newConfigVersion;
-
   final int configLoadTimestamp;
-
   const ConfigData({
     required this.configLoadTimestamp,
     required this.newConfigVersion,
@@ -37,14 +34,21 @@ final class ConfigData {
   });
 }
 
+enum PigeonAdapterMode {
+  appmetrica,
+  none,
+}
+
 final class PigeonBuildSettings {
   final String clientId;
+  final PigeonAdapterMode adapterMode;
   final Map<String?, String?> clientFeatures;
   final bool? logs;
   final bool activateEvent;
 
   const PigeonBuildSettings({
     required this.clientId,
+    required this.adapterMode,
     this.clientFeatures = const {},
     this.logs,
     this.activateEvent = true,
@@ -54,12 +58,6 @@ final class PigeonBuildSettings {
 @HostApi()
 abstract class VarioqubSender {
   void build(final PigeonBuildSettings settings);
-
-  String getDeviceId();
-  void updateDeviceId(final String value);
-
-  String getUserId();
-  void updateUserId(final String value);
 
   @async
   void fetchConfig();
