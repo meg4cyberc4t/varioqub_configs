@@ -1,3 +1,7 @@
+## 0.7.1
+
+- Removing the package tag in AndroidManifest.xml.
+
 ## 0.7.0
 
 - Adding a VarioqubAdapter from native appmetrica implementations.
