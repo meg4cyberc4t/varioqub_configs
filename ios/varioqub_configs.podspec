@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'varioqub_configs'
-  s.version          = '0.7.0'
+  s.version          = '0.7.1'
   s.summary          = 'Flutter plugin providing work with remote configs,experiments and A/B testing via Varioqub.'
   s.description      = <<-DESC
   Flutter plugin providing work with remote configs,
