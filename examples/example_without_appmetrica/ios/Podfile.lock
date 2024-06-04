@@ -1,0 +1,41 @@
+PODS:
+  - Flutter (1.0.0)
+  - Varioqub (0.6.1):
+    - Varioqub/Core (= 0.6.1)
+  - Varioqub/Core (0.6.1):
+    - Varioqub/VQSwiftProtobuf
+  - Varioqub/MetricaAdapter (0.6.1):
+    - Varioqub/Core
+    - Varioqub/VQSwiftProtobuf
+    - YandexMobileMetrica/Dynamic/Core (>= 4.5.0)
+  - Varioqub/VQSwiftProtobuf (0.6.1)
+  - varioqub_configs (0.7.1):
+    - Flutter
+    - Varioqub (~> 0.6)
+    - Varioqub/MetricaAdapter (~> 0.6)
+  - YandexMobileMetrica/Dynamic/Core (4.5.2)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - varioqub_configs (from `.symlinks/plugins/varioqub_configs/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Varioqub
+    - YandexMobileMetrica
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  varioqub_configs:
+    :path: ".symlinks/plugins/varioqub_configs/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  Varioqub: d27899fd1f1cfe894cfffbb84b7924f1e606a6b7
+  varioqub_configs: e5bbaeea74474434e9d4659728ed309a9480bb06
+  YandexMobileMetrica: f5368ee93f286c793d73b58da00929babfc897c1
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.15.2
