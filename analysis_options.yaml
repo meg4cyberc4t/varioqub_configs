@@ -26,6 +26,7 @@ analyzer:
     avoid_types_as_parameter_names: error
     valid_regexps: error
     always_require_non_null_named_parameters: error
+    public_member_api_docs: ignore
 
 linter:
   rules:

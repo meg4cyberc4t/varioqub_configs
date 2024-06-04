@@ -18,13 +18,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  pigeon: ^17.0.0
+  pigeon: ^19.0.1
 
 flutter:
   plugin:
     platforms:
       android:
         package: com.meg4cyberc4t.varioqub_configs
-        pluginClass: VarioqubConfigsPlugin
+        pluginClass: VarioqubApiPigeonImpl
       ios:
-        pluginClass: VarioqubConfigsPlugin
+        pluginClass: VarioqubApiPigeonImpl

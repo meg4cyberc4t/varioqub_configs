@@ -9,32 +9,40 @@ import Varioqub
 import MetricaAdapter
 
 #if os(iOS)
-  import Flutter
+import Flutter
 #elseif os(macOS)
-  import FlutterMacOS
+import FlutterMacOS
 #else
-  #error("Unsupported platform.")
+#error("Unsupported platform.")
 #endif
 
 
 
-public class VarioqubConfigsPlugin: NSObject, FlutterPlugin, VarioqubSender {
+public class VarioqubApiPigeonImpl: NSObject, FlutterPlugin, VarioqubApiPigeon {
+    
+    
     var idProvider: VarioqubIdProvider? = nil;
     var reporter: VarioqubReporter? = nil;
     
     init(binaryMessenger: FlutterBinaryMessenger) {
-            super.init()
-        VarioqubSenderSetup.setUp(binaryMessenger: binaryMessenger, api: self)
+        super.init()
+        VarioqubApiPigeonSetup.setUp(binaryMessenger: binaryMessenger, api: self)
     }
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "varioqub_configs", binaryMessenger: registrar.messenger())
-        let instance = VarioqubConfigsPlugin(binaryMessenger: registrar.messenger())
+        let instance = VarioqubApiPigeonImpl(binaryMessenger: registrar.messenger())
         registrar.addMethodCallDelegate(instance, channel: channel)
-      }
+    }
     
-    func build(settings: PigeonBuildSettings) throws {
+    func build(settings: VarioqubSettingsPigeon) throws {
         var config = VarioqubConfig.default
+        if (settings.fetchThrottleIntervalMs != nil) {
+            config.fetchThrottle = Double(settings.fetchThrottleIntervalMs! / 1000)
+        }
+        if (settings.url != nil) {
+            config.baseURL = URL(string: settings.url!)
+        }
         
         var clientFeatures: [String : String] = [:]
         for (key, value) in settings.clientFeatures {
@@ -44,33 +52,56 @@ public class VarioqubConfigsPlugin: NSObject, FlutterPlugin, VarioqubSender {
         }
         config.initialClientFeatures = ClientFeatures(dictionary: clientFeatures)
         
-      
-        switch (settings.adapterMode) {
-           case .appmetrica:
-            let adapter = AppmetricaAdapter();
-            reporter = adapter;
-            idProvider = adapter;
-           case .none:
-            let adapter = VarioqubNullHandler();
-            reporter = adapter;
-            idProvider = adapter;
-        }
         
         VarioqubFacade.shared.initialize(
             clientId: settings.clientId,
             config: config,
-            idProvider: idProvider,
-            reporter: reporter
+            idProvider:  settings.trackingWithAppMetrica ? AppmetricaAdapter() :  VarioqubNullHandler(),
+            reporter: settings.trackingWithAppMetrica ? AppmetricaAdapter() :  VarioqubNullHandler()
         )
     }
     
     
-    func fetchConfig(completion: @escaping (Result<Void, Error>) -> Void) {
+    func fetchConfig(completion: @escaping (Result<FetchErrorPigeon?, any Error>) -> Void) {
         VarioqubFacade.shared.fetchConfig({ status in
-            switch status {
-                case .success: completion(.success(Void()))
-                case .throttled, .cached: completion(.success(Void()))
-                case .error(let e): completion(.failure(e))
+            switch (status) {
+            case .success, .cached:
+                completion(.success(nil))
+                return
+            case .throttled:
+                completion(.success(FetchErrorPigeon(error: VarioqubFetchErrorPigeon.requestThrottled)))
+                return
+            case .error(let error):
+                let message: String?
+                let fetchError: VarioqubFetchErrorPigeon
+                switch (error) {
+                case .emptyResult:
+                    fetchError = VarioqubFetchErrorPigeon.emptyResult
+                    message = nil
+                case .nullIdentifiers:
+                    fetchError = VarioqubFetchErrorPigeon.identifiersNull
+                    message = nil
+                case .response(let error), .parse(let error):
+                    fetchError = VarioqubFetchErrorPigeon.responseParseError
+                    message = error.localizedDescription
+                case .request:
+                    fetchError = VarioqubFetchErrorPigeon.internalError
+                    message = nil
+                case .underlying(let error):
+                    fetchError = VarioqubFetchErrorPigeon.internalError
+                    message = error.localizedDescription
+                case .network(let error):
+                    fetchError = VarioqubFetchErrorPigeon.networkError
+                    message = error.localizedDescription
+                @unknown default:
+                    fetchError = VarioqubFetchErrorPigeon.internalError
+                    message = nil
+                }
+                completion(.success(FetchErrorPigeon(message: message, error: fetchError)))
+                return
+            @unknown default:
+                completion(.success(nil))
+                return
             }
         })
     }
@@ -120,5 +151,13 @@ public class VarioqubConfigsPlugin: NSObject, FlutterPlugin, VarioqubSender {
         return Array(VarioqubFacade.shared.allKeys.map {
             return $0.rawValue;
         })
+    }
+    
+    func getAllValues() throws -> [String : String] {
+        return VarioqubFacade.shared.allItems
+            .map { key, value in (key.rawValue, value.stringValueOrDefault) }
+            .reduce(into: [:]) { result, tuple in
+                result[tuple.0] = tuple.1
+            }
     }
 }

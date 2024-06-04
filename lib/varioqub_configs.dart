@@ -1,5 +1,7 @@
 /// Varioqub
 library varioqub_configs;
 
-export 'src/build_settings/build_settings.dart';
-export 'src/platform/varioqub.dart';
+export 'src/exceptions.dart'
+    show VarioqubException, VarioqubFetchError, VarioqubFetchException;
+export 'src/varioqub.dart' show Varioqub;
+export 'src/varioqub_settings.dart' show VarioqubSettings;
