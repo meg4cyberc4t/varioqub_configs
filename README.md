@@ -8,25 +8,65 @@
 
 ```dart
 /// Initializing configs instance
-final configs = VarioqubConfigs();
-await configs.build(
-    const BuildSettings(client: VarioqubClient.appmetrica('XXXXXXX')), // Your AppMetrica application ID
+await Varioqub.build(
+    const VarioqubSettings(
+      clientId: _clientId,
+    ),
 );
 
 /// Activation of previous configs.
 /// It is recommended to activate the configuration during application startup.
-await configs.activateConfig();
+await Varioqub.activateConfig();
 
 /// Extracting configs from Varioqub.
 /// It is recommended to fetch the configuration during the application without waiting.
-await configs.fetchConfig();
+await Varioqub.fetchConfig();
 
 /// Getting the config by "FLAG" key.
-await configs.getString(
+await Varioqub.getString(
     key: 'FLAG',
     defaultValue: 'DEFAULT_VALUE',
 );
 ```
+
+## Using together / without AppMetrica
+
+Using the library together with AppMetrica is only available using the ![appmetrica_plugin](https://pub.dev/packages/appmetrica_plugin) library version higher than 2.0.0.
+
+To use experiments and analytics to get configs, use the following build configuration:
+
+```dart
+await AppMetrica.activate(const AppMetricaConfig(_appMetricaKey));
+
+// Initializing Varioqub
+await Varioqub.build(
+    const VarioqubSettings(
+        clientId: _clientId,
+        // The use of this flag is mandatory after initialization of AppMetrica
+        trackingWithAppMetrica: true,
+    ),
+);
+```
+
+[An example of usage can be found here.](https://github.com/meg4cyberc4t/varioqub_configs/tree/main/examples)
+
+## Request throttled exception
+
+This exception, as well as other exceptions, can be received during `fetchConfig` execution. Expect them when getting the config as follows:
+
+```dart
+try {
+    await Varioqub.fetchConfig();
+} on VarioqubFetchException catch (exception) {
+    if (exception.error == VarioqubFetchError.requestThrottled) {
+        debugPrint('Request has been throttled');
+    } else {
+        rethrow;
+    }
+}
+```
+
+> Request throttled means that the timeout for the refetch request did not occur and the current request was canceled. If you want to change the fetch time, use `fetchThrottleIntervalMs`
 
 # Sources
 

@@ -1,6 +1,8 @@
 import 'package:varioqub_configs/src/varioqub_api_pigeon.g.dart';
 
-abstract interface class VarioqubException implements Exception {}
+abstract interface class VarioqubException implements Exception {
+  const VarioqubException._();
+}
 
 class VarioqubFetchException implements VarioqubException {
   const VarioqubFetchException({
@@ -10,6 +12,10 @@ class VarioqubFetchException implements VarioqubException {
 
   final String? message;
   final VarioqubFetchError error;
+
+  @override
+  String toString() =>
+      'VarioqubFetchException{error: $error, message: $message}';
 }
 
 enum VarioqubFetchError {
