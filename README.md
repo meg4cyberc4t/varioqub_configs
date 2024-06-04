@@ -7,7 +7,7 @@
 # Example of using
 
 ```dart
-/// Initializing configs instance
+// Initializing Varioqub
 await Varioqub.build(
     const VarioqubSettings(
       clientId: _clientId,
@@ -31,7 +31,7 @@ await Varioqub.getString(
 
 ## Using together / without AppMetrica
 
-Using the library together with AppMetrica is only available using the ![appmetrica_plugin](https://pub.dev/packages/appmetrica_plugin) library version higher than 2.0.0.
+Using the library together with AppMetrica is only available using the [appmetrica_plugin](https://pub.dev/packages/appmetrica_plugin) library version higher than 2.0.0.
 
 To use experiments and analytics to get configs, use the following build configuration:
 
@@ -47,8 +47,6 @@ await Varioqub.build(
     ),
 );
 ```
-
-[An example of usage can be found here.](https://github.com/meg4cyberc4t/varioqub_configs/tree/main/examples)
 
 ## Request throttled exception
 
@@ -66,7 +64,7 @@ try {
 }
 ```
 
-> Request throttled means that the timeout for the refetch request did not occur and the current request was canceled. If you want to change the fetch time, use `fetchThrottleIntervalMs`
+> Request throttled means that the timeout for the refetch request did not occur and the current request was canceled. If you want to change the fetch time, use `fetchThrottleIntervalMs` in `build` method.
 
 # Sources
 
