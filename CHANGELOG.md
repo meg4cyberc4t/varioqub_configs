@@ -1,3 +1,8 @@
+## 0.8.0
+
+- **BREAKING CHANGES** API usage has switched to using static methods from the Varioqub class. Refer to the documentation and examples for migration. All methods remained the same.
+- Added `getAllValues` method
+
 ## 0.7.1
 
 - Removing the package tag in AndroidManifest.xml.
