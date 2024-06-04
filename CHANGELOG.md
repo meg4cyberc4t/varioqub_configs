@@ -1,4 +1,4 @@
-## 0.8.0
+## 0.8.0-dev.1
 
 - **BREAKING CHANGES** API usage has switched to using static methods from the Varioqub class. Refer to the documentation and examples for migration. All methods remained the same.
 - Added `getAllValues` method

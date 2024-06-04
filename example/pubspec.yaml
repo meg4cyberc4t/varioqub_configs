@@ -1,5 +1,5 @@
-name: example_without_appmetrica
-description: "Example of using varioqub_configs"
+name: example_with_appmetrica
+description: "Example of using varioqub_configs with library appmetrica_plugin"
 publish_to: "none"
 
 version: 1.0.0+1
@@ -11,7 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   varioqub_configs:
-    path: ../../
+    path: ../
+  appmetrica_plugin: ^2.0.0
 
 dev_dependencies:
   flutter_test:
