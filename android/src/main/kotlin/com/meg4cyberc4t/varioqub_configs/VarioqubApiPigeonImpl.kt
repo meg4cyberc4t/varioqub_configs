@@ -43,7 +43,6 @@ class VarioqubApiPigeonImpl : FlutterPlugin, VarioqubApiPigeon {
             builder.withUrl(settings.url).also { builder = it }
         }
         if (settings.fetchThrottleIntervalMs != null) {
-            Log.i(TAG, settings.fetchThrottleIntervalMs.toString())
             builder.withThrottleInterval(settings.fetchThrottleIntervalMs).also { builder = it }
         }
         settings.clientFeatures.forEach { (key, value) ->
