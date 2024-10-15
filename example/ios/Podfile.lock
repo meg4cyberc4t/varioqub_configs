@@ -1,5 +1,74 @@
 PODS:
+  - appmetrica_plugin (3.1.0):
+    - AppMetricaAnalytics (~> 5.8)
+    - Flutter
+  - AppMetricaAdSupport (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreExtension (= 5.8.1)
+  - AppMetricaAnalytics (5.8.1):
+    - AppMetricaAdSupport (= 5.8.1)
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCrashes (= 5.8.1)
+    - AppMetricaWebKit (= 5.8.1)
+  - AppMetricaCore (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaEncodingUtils (= 5.8.1)
+    - AppMetricaFMDB (= 5.8.1)
+    - AppMetricaHostState (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaNetwork (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+    - AppMetricaProtobuf (= 5.8.1)
+    - AppMetricaProtobufUtils (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+  - AppMetricaCoreExtension (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+  - AppMetricaCoreUtils (5.8.1):
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaCrashes (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreExtension (= 5.8.1)
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaEncodingUtils (= 5.8.1)
+    - AppMetricaHostState (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+    - AppMetricaProtobufUtils (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+    - KSCrash/Recording (< 2.1.0, >= 2.0.0-rc.1)
+  - AppMetricaEncodingUtils (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+  - AppMetricaFMDB (5.8.1)
+  - AppMetricaHostState (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaLog (5.8.1)
+  - AppMetricaNetwork (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+  - AppMetricaPlatform (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaProtobuf (5.8.1)
+  - AppMetricaProtobufUtils (5.8.1):
+    - AppMetricaProtobuf (= 5.8.1)
+  - AppMetricaStorageUtils (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaWebKit (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
   - Flutter (1.0.0)
+  - KSCrash/Core (2.0.0-rc.4)
+  - KSCrash/Recording (2.0.0-rc.4):
+    - KSCrash/RecordingCore
+  - KSCrash/RecordingCore (2.0.0-rc.4):
+    - KSCrash/Core
   - Varioqub (0.7.1):
     - Varioqub/Core (= 0.7.1)
   - Varioqub/Core (0.7.1):
@@ -16,22 +85,60 @@ PODS:
   - YandexMobileMetrica/Dynamic/Core (4.5.2)
 
 DEPENDENCIES:
+  - appmetrica_plugin (from `.symlinks/plugins/appmetrica_plugin/ios`)
   - Flutter (from `Flutter`)
   - varioqub_configs (from `.symlinks/plugins/varioqub_configs/ios`)
 
 SPEC REPOS:
   trunk:
+    - AppMetricaAdSupport
+    - AppMetricaAnalytics
+    - AppMetricaCore
+    - AppMetricaCoreExtension
+    - AppMetricaCoreUtils
+    - AppMetricaCrashes
+    - AppMetricaEncodingUtils
+    - AppMetricaFMDB
+    - AppMetricaHostState
+    - AppMetricaLog
+    - AppMetricaNetwork
+    - AppMetricaPlatform
+    - AppMetricaProtobuf
+    - AppMetricaProtobufUtils
+    - AppMetricaStorageUtils
+    - AppMetricaWebKit
+    - KSCrash
     - Varioqub
     - YandexMobileMetrica
 
 EXTERNAL SOURCES:
+  appmetrica_plugin:
+    :path: ".symlinks/plugins/appmetrica_plugin/ios"
   Flutter:
     :path: Flutter
   varioqub_configs:
     :path: ".symlinks/plugins/varioqub_configs/ios"
 
 SPEC CHECKSUMS:
+  appmetrica_plugin: 22d4d1eb9d070509fce428774b7f0d0686564010
+  AppMetricaAdSupport: da744703342f003d7766dd03a5a070cca0a591c4
+  AppMetricaAnalytics: 1778651a86e381827e8e663314ac8b99c5bcfb3f
+  AppMetricaCore: 50968d9a5673bce38b7bcdd9a6fc85be1ea1b1ac
+  AppMetricaCoreExtension: 594dc51a8986f539ea719d66e248d91e76d2502d
+  AppMetricaCoreUtils: 05977363327e0fb6c2898ef827635399f840e14f
+  AppMetricaCrashes: b3ed2de6df85577a488737aee0a8610eb8486c0f
+  AppMetricaEncodingUtils: 5fd1f40e165cf0ec30ae01bba48ffcfaab2fcc2b
+  AppMetricaFMDB: 230a58d091733aa61d1a0bd9c459ff230b2c4572
+  AppMetricaHostState: 64392a6172c06fa0e5eff4232b49b0c5175c995f
+  AppMetricaLog: 7781a25e26594ab2b291785670a6410f1968bfa8
+  AppMetricaNetwork: 77b517922375ebe6cd0c0656967df6d7130040f8
+  AppMetricaPlatform: 4b5ae79e46c9457a6ed6c129a6ae702f1694c532
+  AppMetricaProtobuf: 17c8a9c35967580cea6f7215ca9abd6024f59477
+  AppMetricaProtobufUtils: 658c8608b2edb5c7d90463df72a0a80e715bfcb6
+  AppMetricaStorageUtils: 56a5345e7b82e7d778708b973fdcf0c657b49aca
+  AppMetricaWebKit: b15a5c78fdeaca729a5b218509459d17d357b293
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  KSCrash: d45094d12f4c82bcec2f0574dbd5a34a5db788de
   Varioqub: 58ba926b3f00644b2474a388ccf739e7054c9750
   varioqub_configs: 0e8fbda5dabf349523d41648cf3c1f19e75a95db
   YandexMobileMetrica: f5368ee93f286c793d73b58da00929babfc897c1
