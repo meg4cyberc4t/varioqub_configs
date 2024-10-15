@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'Varioqub', '~> 0.6'
-  s.dependency 'Varioqub/MetricaAdapter', '~> 0.6'
+  s.dependency 'Varioqub', '~> 0.7.1'
+  s.dependency 'Varioqub/MetricaAdapter', '~> 0.7.1'
 
 
   s.platform = :ios, '12.0'
