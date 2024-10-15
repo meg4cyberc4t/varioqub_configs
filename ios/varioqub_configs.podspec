@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'varioqub_configs'
-  s.version          = '0.7.1'
+  s.version          = '0.8.0'
   s.summary          = 'Flutter plugin providing work with remote configs,experiments and A/B testing via Varioqub.'
   s.description      = <<-DESC
   Flutter plugin providing work with remote configs,
@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'Varioqub', '~> 0.6'
-  s.dependency 'Varioqub/MetricaAdapter', '~> 0.6'
+  s.dependency 'Varioqub', '~> 0.7.1'
+  s.dependency 'Varioqub/MetricaAdapter', '~> 0.7.1'
 
 
   s.platform = :ios, '12.0'

@@ -1,6 +1,7 @@
-## 0.8.0-dev.2
+## 0.8.0
 
 - **BREAKING CHANGES** API usage has switched to using static methods from the Varioqub class. Refer to the documentation and examples for migration. All methods remained the same.
+- Varioqub versions for iOS have been updated to 7.1.0 accordingly.
 - Added `getAllValues` method
 
 ## 0.7.1
