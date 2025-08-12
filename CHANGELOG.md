@@ -1,3 +1,8 @@
+## 0.8.1
+
+- Pigeon v26.0.1 is used for code generation.
+- Android **compileSdk** increased to **35**.
+
 ## 0.8.0
 
 - **BREAKING CHANGES** API usage has switched to using static methods from the Varioqub class. Refer to the documentation and examples for migration. All methods remained the same.

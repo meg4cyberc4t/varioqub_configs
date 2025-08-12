@@ -98,7 +98,7 @@ PODS:
     - Varioqub/VQSwiftProtobuf
     - YandexMobileMetrica/Dynamic/Core (~> 4.5.0)
   - Varioqub/VQSwiftProtobuf (0.7.2)
-  - varioqub_configs (0.8.0):
+  - varioqub_configs (0.8.1):
     - Flutter
     - Varioqub (~> 0.7.1)
     - Varioqub/MetricaAdapter (~> 0.7.1)
@@ -170,7 +170,7 @@ SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   KSCrash: ad271a7799f0a2841be0fb7d6bd105444c440832
   Varioqub: 8f452dae1a8acdc86e4b4dae883bd3bb5d5b2254
-  varioqub_configs: 62c1a0bee5c5533f428fa3e30a2c28c5b75be6b4
+  varioqub_configs: 10dffd7c0193b1d111cfa2aa897c456a829ed21a
   YandexMobileMetrica: f5368ee93f286c793d73b58da00929babfc897c1
 
 PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
