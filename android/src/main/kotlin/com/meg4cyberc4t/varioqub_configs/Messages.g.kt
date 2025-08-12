@@ -5,7 +5,7 @@
 // See also: https://pub.dev/packages/pigeon
 @file:Suppress("UNCHECKED_CAST", "ArrayInDataClass")
 
-package com.meg4cyberc4t.varioqub_configs
+package dev.molchanovia.varioqub_configs
 
 import android.util.Log
 import io.flutter.plugin.common.BasicMessageChannel

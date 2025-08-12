@@ -24,7 +24,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.meg4cyberc4t.varioqub_configs
+        package: dev.molchanovia.varioqub_configs
         pluginClass: VarioqubApiPigeonImpl
       ios:
         pluginClass: VarioqubApiPigeonImpl

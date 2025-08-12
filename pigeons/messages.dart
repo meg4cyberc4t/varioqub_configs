@@ -10,10 +10,10 @@ import 'package:pigeon/pigeon.dart';
     dartOut: 'lib/src/varioqub_api_pigeon.g.dart',
     dartOptions: DartOptions(),
     kotlinOut:
-        'android/src/main/kotlin/com/meg4cyberc4t/varioqub_configs/Messages.g.kt',
+        'android/src/main/kotlin/dev/molchanovia/varioqub_configs/Messages.g.kt',
     kotlinOptions: KotlinOptions(
       errorClassName: 'FlutterError',
-      package: 'com.meg4cyberc4t.varioqub_configs',
+      package: 'dev.molchanovia.varioqub_configs',
     ),
     swiftOut: 'ios/Classes/Messages.g.swift',
     swiftOptions: SwiftOptions(),

@@ -1,4 +1,4 @@
-package com.meg4cyberc4t.varioqub_configs
+package dev.molchanovia.varioqub_configs
 
 import com.yandex.varioqub.analyticadapter.AdapterIdentifiersCallback
 import com.yandex.varioqub.analyticadapter.VarioqubConfigAdapter

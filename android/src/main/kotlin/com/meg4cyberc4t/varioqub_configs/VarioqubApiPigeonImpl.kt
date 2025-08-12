@@ -1,4 +1,4 @@
-package com.meg4cyberc4t.varioqub_configs
+package dev.molchanovia.varioqub_configs
 
 import android.content.Context
 import android.util.Log
