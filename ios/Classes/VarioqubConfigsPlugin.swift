@@ -37,8 +37,8 @@ public class VarioqubApiPigeonImpl: NSObject, FlutterPlugin, VarioqubApiPigeon {
     
     func build(settings: VarioqubSettingsPigeon) throws {
         var config = VarioqubConfig.default
-        if (settings.fetchThrottleIntervalMs != nil) {
-            config.fetchThrottle = Double(settings.fetchThrottleIntervalMs! / 1000)
+        if (settings.fetchThrottleIntervalSeconds != nil) {
+            config.fetchThrottle = Double(settings.fetchThrottleIntervalSeconds!)
         }
         if (settings.url != nil) {
             config.baseURL = URL(string: settings.url!)

@@ -5,7 +5,7 @@ import 'package:varioqub_configs/src/varioqub_api_pigeon.g.dart';
 final class VarioqubSettings {
   final String clientId;
   final String? url;
-  final int? fetchThrottleIntervalMs;
+  final Duration? fetchThrottleInterval;
   final bool? logs;
   final bool? activateEvent;
   final Map<String, String> clientFeatures;
@@ -14,7 +14,7 @@ final class VarioqubSettings {
   const VarioqubSettings({
     required this.clientId,
     this.url,
-    this.fetchThrottleIntervalMs,
+    this.fetchThrottleInterval,
     this.logs,
     this.activateEvent,
     this.clientFeatures = const {},
@@ -29,8 +29,8 @@ extension VarioqubSettingsPigeonConverter on VarioqubSettings {
         clientFeatures: clientFeatures,
         clientId: clientId,
         activateEvent: activateEvent,
-        fetchThrottleIntervalMs: fetchThrottleIntervalMs,
         logs: logs,
         trackingWithAppMetrica: trackingWithAppMetrica,
+        fetchThrottleIntervalSeconds: fetchThrottleInterval?.inSeconds,
       );
 }

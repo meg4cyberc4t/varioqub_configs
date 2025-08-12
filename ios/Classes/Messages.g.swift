@@ -144,7 +144,7 @@ enum VarioqubFetchErrorPigeon: Int {
 struct VarioqubSettingsPigeon: Hashable {
   var clientId: String
   var url: String? = nil
-  var fetchThrottleIntervalMs: Int64? = nil
+  var fetchThrottleIntervalSeconds: Int64? = nil
   var logs: Bool? = nil
   var activateEvent: Bool? = nil
   var trackingWithAppMetrica: Bool
@@ -155,7 +155,7 @@ struct VarioqubSettingsPigeon: Hashable {
   static func fromList(_ pigeonVar_list: [Any?]) -> VarioqubSettingsPigeon? {
     let clientId = pigeonVar_list[0] as! String
     let url: String? = nilOrValue(pigeonVar_list[1])
-    let fetchThrottleIntervalMs: Int64? = nilOrValue(pigeonVar_list[2])
+    let fetchThrottleIntervalSeconds: Int64? = nilOrValue(pigeonVar_list[2])
     let logs: Bool? = nilOrValue(pigeonVar_list[3])
     let activateEvent: Bool? = nilOrValue(pigeonVar_list[4])
     let trackingWithAppMetrica = pigeonVar_list[5] as! Bool
@@ -164,7 +164,7 @@ struct VarioqubSettingsPigeon: Hashable {
     return VarioqubSettingsPigeon(
       clientId: clientId,
       url: url,
-      fetchThrottleIntervalMs: fetchThrottleIntervalMs,
+      fetchThrottleIntervalSeconds: fetchThrottleIntervalSeconds,
       logs: logs,
       activateEvent: activateEvent,
       trackingWithAppMetrica: trackingWithAppMetrica,
@@ -175,7 +175,7 @@ struct VarioqubSettingsPigeon: Hashable {
     return [
       clientId,
       url,
-      fetchThrottleIntervalMs,
+      fetchThrottleIntervalSeconds,
       logs,
       activateEvent,
       trackingWithAppMetrica,

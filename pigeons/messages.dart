@@ -28,7 +28,7 @@ import 'package:pigeon/pigeon.dart';
 final class VarioqubSettingsPigeon {
   final String clientId;
   final String? url;
-  final int? fetchThrottleIntervalMs;
+  final int? fetchThrottleIntervalSeconds;
   final bool? logs;
   final bool? activateEvent;
   final bool trackingWithAppMetrica;
@@ -41,7 +41,7 @@ final class VarioqubSettingsPigeon {
     required this.clientId,
     required this.trackingWithAppMetrica,
     this.url,
-    this.fetchThrottleIntervalMs,
+    this.fetchThrottleIntervalSeconds,
     this.logs,
     this.activateEvent,
     this.clientFeatures = const {},
