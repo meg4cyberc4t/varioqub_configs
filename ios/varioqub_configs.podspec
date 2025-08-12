@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
                        DESC
   s.homepage         = 'https://github.com/meg4cyberc4t/varioqub_configs'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Igor Molchanov' => 'meg4cyberc4t@gmail.com' }
+  s.author           = { 'Igor Molchanov' => 'ask@molchanovia.dev' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'

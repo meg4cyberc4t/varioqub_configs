@@ -29,6 +29,7 @@ Future<void> main() async {
   // They may return different errors described in [VarioqubFetchError].
   try {
     await Varioqub.fetchConfig();
+    await Varioqub.activateConfig();
   } on VarioqubFetchException catch (exception) {
     if (exception.error == VarioqubFetchError.requestThrottled) {
       debugPrint('Request has been throttled');
