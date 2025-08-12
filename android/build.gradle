@@ -1,16 +1,16 @@
-group 'com.example.varioqub_configs'
+group 'dev.molchanovia.varioqub_configs'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = "2.1.0"
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath("com.android.tools.build:gradle:8.7.3")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 
@@ -25,19 +25,17 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    if (project.android.hasProperty('namespace')) {
-        namespace 'com.example.varioqub_configs'
-    }
+    namespace = "dev.molchanovia.varioqub_configs"
 
-    compileSdkVersion 33
+    compileSdk = 35
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11
     }
 
     sourceSets {
@@ -46,11 +44,10 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdk = 21
     }
 
     dependencies {
-        testImplementation 'org.jetbrains.kotlin:kotlin-test'
         implementation 'com.yandex.varioqub:appmetrica-adapter:0.7.0'
         implementation 'com.yandex.varioqub:config:0.7.0'
         implementation 'com.yandex.android:mobmetricalib:5.3.0'
