@@ -1,7 +1,8 @@
 ## 0.8.1
 
-- Pigeon v26.0.1 is used for code generation.
-- Android **compileSdk** increased to **35**.
+- **Pigeon 26.0.1** is used for code generation.
+- Android **compileSdk** version increased to **35**, **minSdk** version increased to **21**.
+- Using Kotlin 2.1.0 for android plugin.
 
 ## 0.8.0
 
