@@ -4,6 +4,10 @@
 
 ### Flutter plugin providing work with remote configs, experiments and A/B testing via <a href="https://varioqub.ru/">Varioqub</a>.
 
+> **The current version of the library uses [native versions of the platform SDK](https://yandex.ru/support/varioqub-app/en/sdk/changelog):**
+> `com.yandex.varioqub:config:0.7.0` for Android, 
+> `pod 'Varioqub', '~> 0.8'` for IOS
+
 # Example of using
 
 ```dart
