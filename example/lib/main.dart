@@ -17,7 +17,11 @@ Future<void> main() async {
     const VarioqubSettings(
       clientId: _clientId,
       // The use of this flag is mandatory after initialization of AppMetrica
-      trackingWithAppMetrica: true, // (if you want to use config analytics)
+      trackingWithAppMetrica: true, // If you want to use config analytics
+      fetchThrottleInterval: Duration(
+        hours: 3,
+        minutes: 30,
+      ), // Set up a custom configuration collection limit if needed
     ),
   );
 

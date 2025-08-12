@@ -46,7 +46,7 @@ class VarioqubSettingsPigeon {
   VarioqubSettingsPigeon({
     required this.clientId,
     this.url,
-    this.fetchThrottleIntervalMs,
+    this.fetchThrottleIntervalSeconds,
     this.logs,
     this.activateEvent,
     required this.trackingWithAppMetrica,
@@ -57,7 +57,7 @@ class VarioqubSettingsPigeon {
 
   String? url;
 
-  int? fetchThrottleIntervalMs;
+  int? fetchThrottleIntervalSeconds;
 
   bool? logs;
 
@@ -71,7 +71,7 @@ class VarioqubSettingsPigeon {
     return <Object?>[
       clientId,
       url,
-      fetchThrottleIntervalMs,
+      fetchThrottleIntervalSeconds,
       logs,
       activateEvent,
       trackingWithAppMetrica,
@@ -88,7 +88,7 @@ class VarioqubSettingsPigeon {
     return VarioqubSettingsPigeon(
       clientId: result[0]! as String,
       url: result[1] as String?,
-      fetchThrottleIntervalMs: result[2] as int?,
+      fetchThrottleIntervalSeconds: result[2] as int?,
       logs: result[3] as bool?,
       activateEvent: result[4] as bool?,
       trackingWithAppMetrica: result[5]! as bool,

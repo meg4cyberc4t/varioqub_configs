@@ -100,7 +100,7 @@ enum class VarioqubFetchErrorPigeon(val raw: Int) {
 data class VarioqubSettingsPigeon (
   val clientId: String,
   val url: String? = null,
-  val fetchThrottleIntervalMs: Long? = null,
+  val fetchThrottleIntervalSeconds: Long? = null,
   val logs: Boolean? = null,
   val activateEvent: Boolean? = null,
   val trackingWithAppMetrica: Boolean,
@@ -111,19 +111,19 @@ data class VarioqubSettingsPigeon (
     fun fromList(pigeonVar_list: List<Any?>): VarioqubSettingsPigeon {
       val clientId = pigeonVar_list[0] as String
       val url = pigeonVar_list[1] as String?
-      val fetchThrottleIntervalMs = pigeonVar_list[2] as Long?
+      val fetchThrottleIntervalSeconds = pigeonVar_list[2] as Long?
       val logs = pigeonVar_list[3] as Boolean?
       val activateEvent = pigeonVar_list[4] as Boolean?
       val trackingWithAppMetrica = pigeonVar_list[5] as Boolean
       val clientFeatures = pigeonVar_list[6] as Map<String?, String?>
-      return VarioqubSettingsPigeon(clientId, url, fetchThrottleIntervalMs, logs, activateEvent, trackingWithAppMetrica, clientFeatures)
+      return VarioqubSettingsPigeon(clientId, url, fetchThrottleIntervalSeconds, logs, activateEvent, trackingWithAppMetrica, clientFeatures)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
       clientId,
       url,
-      fetchThrottleIntervalMs,
+      fetchThrottleIntervalSeconds,
       logs,
       activateEvent,
       trackingWithAppMetrica,
