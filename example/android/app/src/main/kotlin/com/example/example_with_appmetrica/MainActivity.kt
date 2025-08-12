@@ -1,4 +1,4 @@
-package com.example.example_with_appmetrica
+package dev.molchanovia.varioqub_configs_example
 
 import io.flutter.embedding.android.FlutterActivity
 
